@@ -19,11 +19,13 @@ protocol MainViewPresenterProtocol: AnyObject {
 }
 
 class MainPresenter: MainViewPresenterProtocol {
+    // MARK: - Properties
     weak var view: MainViewProtocol?
     let networkService: NetworkServiceProtocol!
     let router: RouterProtocol?
     var personData: Welcome?
 
+    // MARK: - Init
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
@@ -31,6 +33,7 @@ class MainPresenter: MainViewPresenterProtocol {
         getObject()
     }
 
+    // MARK: - Methods
     func getObject() {
         networkService.getEmployee(completion: { [weak self] result in
             guard let self = self else {

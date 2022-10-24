@@ -18,14 +18,17 @@ protocol RouterProtocol: RouterMain {
 }
 
 class Router: RouterProtocol {
+    // MARK: - Properties
     var navigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
 
+    // MARK: - Init
     init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
 
+    // MARK: - Methods
     func initialViewController() {
         if let navigationController = navigationController {
             guard let mainViewController = assemblyBuilder?.createMainModule(router: self) else { return }
