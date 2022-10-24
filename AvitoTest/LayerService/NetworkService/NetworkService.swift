@@ -34,10 +34,7 @@ class NetworkService: NetworkServiceProtocol {
             }
         } else {
             URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
-                guard let error = error else {
-                    return
-                }
-                guard let response = response else {
+                if let error = error {
                     completion(.failure(error))
                     return
                 }
@@ -48,7 +45,7 @@ class NetworkService: NetworkServiceProtocol {
 
                     let dataCache = try JSONEncoder().encode(object)
                     let cachedResponse = self.willCacheResponse(cachedResponse: CachedURLResponse(
-                        response: response,
+                        response: response!,
                         data: dataCache,
                         userInfo: nil,
                         storagePolicy: .allowed))

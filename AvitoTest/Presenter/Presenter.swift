@@ -42,7 +42,7 @@ class MainPresenter: MainViewPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let personData):
-                    self.personData =  personData
+                    self.personData = personData
                     self.view?.success()
                 case .failure(let error):
                     self.view?.failure(error: error)
